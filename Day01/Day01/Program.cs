@@ -30,6 +30,19 @@ namespace Day01
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
 
+            int n1 = 5, n2 = 7;
+            int sum = Add(n1, n2);//pass by value
+            //$ - interpolated string
+            Console.WriteLine($"{n1} + {n2} = {sum}");
+            //Console.ReadKey();
+
+            bool isEven = Add(n1, n2, ref sum);
+            int addition = 0;
+            isEven = Add(12, 30, ref addition);
+
+            bool isPositive = Product(-5, out int product);
+            Console.WriteLine($"-5 * 2 = {product}");
+
             while (true)
             {
                 Console.Clear();
@@ -62,7 +75,23 @@ namespace Day01
                 else
                     break;
             }
-            Console.ReadKey();
+        }
+
+        private static bool Product(int num1, out int result, int factor = 2)
+        {
+            result = num1 * factor;
+            return result > 0;
+        }
+
+        private static bool Add(int num1, int num2, ref int result)
+        {
+            result = num1 + num2;
+            return result % 2 == 0;
+        }
+
+        static int Add(int num1, int num2)//pass by value
+        {
+            return num1 + num2;
         }
 
         #region Symbols
@@ -88,12 +117,12 @@ namespace Day01
         }
         private static void DrawObjects()
         {
-            deadpool.DrawMe();
             goal.DrawMe();
             foreach (var gameObject in dots)
             {
                 gameObject.DrawMe();
             }
+            deadpool.DrawMe();
         }
         #endregion
 
@@ -118,8 +147,11 @@ namespace Day01
             //
             //-------------------------------------------------------------------------------------------
 
-
-
+            for (int i = 0; i < 6; i++)
+            {
+                deadpool.MoveRight();
+            }
+            DrawObjects();
 
 
             //-------------------------------------------------------------------------------------------
@@ -155,12 +187,17 @@ namespace Day01
             //-------------------------------------------------------------------------------------------
 
 
+            for (int i = 0; i < 6; i++)
+            {
+                deadpool.MoveRight();
+            }
+            DrawObjects();
 
 
 
             //-------------------------------------------------------------------------------------------
 
-            if (deadpool.X == goal.X && deadpool.Y == goal.Y)  //-------Call your method here in place of the conditions
+            if (Collision(deadpool, goal))  //-------Call your method here in place of the conditions
                 Graphics.ShowResult(true);
             else
                 Graphics.ShowResult(false);
@@ -172,6 +209,10 @@ namespace Day01
         // Return true if they match otherwise return false.
         //
         //-------------------------------------------------------------------------------------------
+        public static bool Collision(GameObject obj1, GameObject obj2)
+        {
+            return obj1.X == obj2.X && obj1.Y == obj2.Y;
+        }
 
         #endregion
 
@@ -190,12 +231,21 @@ namespace Day01
             //
             //-------------------------------------------------------------------------------------------
 
-
+            ConsoleColor foreground = ConsoleColor.White;
+            ConsoleColor background = ConsoleColor.Red;
+            Colors(ref foreground, ref background);
 
             //-------------------------------------------------------------------------------------------
 
             //set Back and Fore to the variables used when calling your method
-            GameObject deadpool = new GameObject() { X = Console.WindowWidth / 2, Y = Console.WindowHeight / 2, Symbol = deadPool, Back = ConsoleColor.Red, Fore = ConsoleColor.White };
+            GameObject deadpool = new GameObject()
+            {
+                X = Console.WindowWidth / 2,
+                Y = Console.WindowHeight / 2,
+                Symbol = deadPool,
+                Back = background,
+                Fore = foreground
+            };
             deadpool.DrawMe();
 
             Console.SetCursorPosition(0, 6);
@@ -205,11 +255,16 @@ namespace Day01
         }
         //-------------------------------------------------------------------------------------------
         //
-        // Create a method to use 2 ref parameters: foreground color and background color.
+        // Create a method to use 2 ref parameters: foreground color and background color.  ConsoleColor
         // Set them to whatever colors you want.
         //
         //-------------------------------------------------------------------------------------------
-
+        static void Colors(ref ConsoleColor fore, ref ConsoleColor back)
+        {
+            Random randy = new();
+            fore = (ConsoleColor)randy.Next(16);
+            back = (ConsoleColor)randy.Next(16);
+        }
         #endregion
 
         #region Part4
@@ -227,13 +282,26 @@ namespace Day01
             //
             //-------------------------------------------------------------------------------------------
 
+            ConsoleColor foreground = ConsoleColor.White;
+            ConsoleColor background = ConsoleColor.Red;
+            int xPos, yPos;
+            GameObject deadpool = new GameObject() { Symbol = deadPool, Back = background, Fore = foreground };
+            while (true)
+            {
+                Position(out xPos, out yPos);
+                Colors(ref foreground, ref background);
 
+                deadpool.X = xPos;
+                deadpool.Y = yPos;
+                deadpool.Fore = foreground;
+                deadpool.Back = background;
 
-            //-------------------------------------------------------------------------------------------
+                //-------------------------------------------------------------------------------------------
 
-            //set X and Y to the variables used when calling your method
-            GameObject deadpool = new GameObject() { X = Console.WindowWidth / 2, Y = Console.WindowHeight / 2, Symbol = deadPool, Back = ConsoleColor.Red, Fore = ConsoleColor.White };
-            deadpool.DrawMe();
+                //set X and Y to the variables used when calling your method
+                deadpool.DrawMe();
+
+            }
 
             Console.SetCursorPosition(0, 6);
             Console.WriteLine("Press any key to continue");
@@ -247,8 +315,14 @@ namespace Day01
         // HINT: use Console.WindowWidth as the upper range for X and Console.WindowHeight as the upper range for Y
         //
         //-------------------------------------------------------------------------------------------
-
+        static void Position(out int x, out int y)
+        {
+            Random rando = new Random();
+            x = rando.Next(Console.WindowWidth);
+            y = rando.Next(Console.WindowHeight);
+        }
         #endregion
+
 
     }
 
