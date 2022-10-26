@@ -28,13 +28,17 @@ namespace Day02
         /// <summary>
         /// Loops over the _grades and prints each grade
         /// </summary>
-        public void PrintGrades()
+        public void PrintGrades(List<double> grades = null)
         {
-            if (_grades == null) FillGrades();
-
-            for (int i = 0; i < _grades.Count; i++)
+            if (grades == null)
             {
-                double grade = _grades[i];
+                if (_grades == null) FillGrades();
+                grades = _grades;
+            }
+
+            for (int i = 0; i < grades.Count; i++)
+            {
+                double grade = grades[i];
                 if (grade < 59.5) Console.BackgroundColor = ConsoleColor.Red;
                 else if (grade < 69.5) Console.ForegroundColor = ConsoleColor.DarkYellow;
                 else if(grade < 79.5) Console.ForegroundColor = ConsoleColor.Yellow;
@@ -43,7 +47,7 @@ namespace Day02
 
                 // ,7 - right-aligns in 7 spaces
                 // :N2 - number with 2 decimal places
-                Console.WriteLine($"{_grades[i],7:N2}");
+                Console.WriteLine($"{grades[i],7:N2}");
                 Console.ResetColor();
             }
         }
@@ -69,6 +73,17 @@ namespace Day02
             //    }
             //}
             return dropped;
+        }
+
+        public List<double> CurveGrades(int amountToCurve)
+        {
+            List<double> curved = _grades.ToList();//clone the original
+            for (int i = 0; i < curved.Count; i++)
+            {
+                //ternary operator
+                curved[i] = (curved[i] < (100 - amountToCurve)) ? curved[i] + amountToCurve : 100;
+            }
+            return curved;
         }
     }
 }

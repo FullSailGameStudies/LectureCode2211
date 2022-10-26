@@ -55,6 +55,11 @@ namespace Day02
                             //      curve the grades (add +5 to each grade)
                             //  return the curved list
                             //call CurveGrades here 
+                            Console.WriteLine("-------ORIGINAL------");
+                            pg2.PrintGrades();
+                            Console.WriteLine("-------CURVED------");
+                            List<double> curved = pg2.CurveGrades(10);
+                            pg2.PrintGrades(curved);
                             break;
                         case 5:
                             //Add a PrintData(string) method to the SplitText class
@@ -124,7 +129,7 @@ namespace Day02
         {
             //clone the original
             List<string> clone1 = myData.ToList();
-            clone1.RemoveAt(myData.Count - 1);
+            //clone1.RemoveAt(myData.Count - 1);
 
             List<string> clone2 = new List<string>(myData);
 
