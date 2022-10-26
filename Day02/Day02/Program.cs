@@ -44,6 +44,9 @@ namespace Day02
                             //  return the number of grades removed
                             //call DropFailing here and print the number of grades removed
                             //call PrintGrades here
+                            int droppedGrades = pg2.DropFailing();
+                            Console.WriteLine($"{droppedGrades} dropped.");
+                            pg2.PrintGrades();
                             break;
                         case 4:
                             //Add a method CurveGrades(amount) to the Course class

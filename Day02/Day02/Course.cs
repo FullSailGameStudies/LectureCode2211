@@ -47,6 +47,29 @@ namespace Day02
                 Console.ResetColor();
             }
         }
+
+        public int DropFailing()
+        {
+            int dropped = 0;
+            for (int i = 0; i < _grades.Count; i++)
+            {
+                if (_grades[i] < 59.5)
+                {
+                    dropped++;
+                    _grades.RemoveAt(i);
+                    i--;
+                }
+            }
+            //for (int i = _grades.Count - 1; i >= 0; i--)
+            //{
+            //    if (_grades[i] < 59.5)
+            //    {
+            //        dropped++;
+            //        _grades.RemoveAt(i);
+            //    }
+            //}
+            return dropped;
+        }
     }
 }
 
