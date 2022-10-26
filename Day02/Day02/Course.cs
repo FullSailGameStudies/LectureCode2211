@@ -11,6 +11,19 @@ namespace Day02
         private List<double> _grades;
 
         public string Name { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Initialize and Fill the _grades list with 10 grades
+        /// </summary>
+        public void FillGrades()
+        {
+            _grades = new List<double>();//initialized the list
+            Random rando = new Random();
+            for (int i = 0; i < 10; i++)
+            {
+                _grades.Add(rando.NextDouble() * 100);
+            }
+        }
     }
 }
 

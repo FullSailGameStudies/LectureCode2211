@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+//using System.Collections.Generic;
 using System.Linq;
 
 namespace Day02
@@ -8,6 +9,7 @@ namespace Day02
     {
         static void Main(string[] args)
         {
+            ListSamples();
             Course pg2 = new Course() { Name = "PG2 - 2211" };
 
             while (true)
@@ -25,6 +27,7 @@ namespace Day02
                             //  Initialize the _grades list
                             //  add 10 random grades 
                             //call FillGrades here 
+                            pg2.FillGrades();
                             break;
                         case 2:
                             //Add a method PrintGrades to the Course class
@@ -63,6 +66,50 @@ namespace Day02
                 else
                     break;
             }
+        }
+
+        private static void ListSamples()
+        {
+            string[] data = new string[3] { "Batman", "Bats", "Bruce" };
+            for (int i = 0; i < data.Length; i++)
+            {
+
+            }
+            List<string> best;//null
+            best = new List<string>(10);// { "Batman", "Bats", "Bruce" };//creating an instance of List<string>
+            Info(best);//Count:0  Capacity:0 
+            best.Add("not Aquaman");//Count:1  Capacity:___ 1?  
+            Info(best);
+            best.Add("Batman");
+            best.Add("Bats");
+            best.Add("Bruce");//Count:4  Capacity:4
+            best.Add("Dark Knight"); 
+            Info(best);//Count:5  Capacity:8?16?
+            best.Add("Wonder Woman");
+            best.Add("Flash");
+            best.Add("still not Aquaman");
+            best.Add("Superman");//Count:9  Capacity:12? 16?  
+            Info(best);
+            best.Add("Robin");
+            best.Add("Green Arrow");
+            best.Add("Batgirl");
+            Info(best);//Count:12  Capacity:
+
+            for (int i = 0; i < best.Count; i++)
+            {
+                Console.WriteLine(best[i]);
+            }
+            Console.WriteLine("-----foreach-------");
+            foreach (string super in best)
+            {
+                Console.WriteLine(super);
+            }
+        }
+        private static void Info(List<string> myData)
+        {
+            //Count - # of items we've added
+            //Capacity - Length of the internal array
+            Console.WriteLine($"Count: {myData.Count}\tCapacity: {myData.Capacity}");
         }
     }
 }
