@@ -52,7 +52,7 @@ namespace Day02
                             //Add a method CurveGrades(amount) to the Course class
                             //  clone the _grades list
                             //  loop over the cloned list
-                            //      curve the grades
+                            //      curve the grades (add +5 to each grade)
                             //  return the curved list
                             //call CurveGrades here 
                             break;
@@ -77,10 +77,19 @@ namespace Day02
         private static void ListSamples()
         {
             string[] data = new string[3] { "Batman", "Bats", "Bruce" };
+            //1) call ToList
+            List<string> data2 = data.ToList();
+
+            //2) pass array to the list constructor
+            List<string> data3 = new List<string>(data);
+
+            //3) copy each item from the array to the list
+            List<string> data4 = new List<string>();
             for (int i = 0; i < data.Length; i++)
             {
-
+                data4.Add(data[i]);
             }
+
             List<string> best;//null
             best = new List<string>(10);// { "Batman", "Bats", "Bruce" };//creating an instance of List<string>
             Info(best);//Count:0  Capacity:0 
@@ -113,6 +122,12 @@ namespace Day02
         }
         private static void Info(List<string> myData)
         {
+            //clone the original
+            List<string> clone1 = myData.ToList();
+            clone1.RemoveAt(myData.Count - 1);
+
+            List<string> clone2 = new List<string>(myData);
+
             //Count - # of items we've added
             //Capacity - Length of the internal array
             Console.WriteLine($"Count: {myData.Count}\tCapacity: {myData.Capacity}");
