@@ -9,6 +9,15 @@ namespace Day02
     {
         static void Main(string[] args)
         {
+            string names = "Batman;Bats;Dark Knight;;Joker:Bane:Mr. Freeze:Scarecrow";
+            char[] delimiters = new char[] { ';', ':' };
+            string[] nameData = names.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
+            int index = 0;
+            foreach (string name in nameData)
+            {
+                Console.WriteLine($"{++index}. {name}");
+            }
+            Console.ReadKey();
             ListSamples();
             Course pg2 = new Course() { Name = "PG2 - 2211" };
 
