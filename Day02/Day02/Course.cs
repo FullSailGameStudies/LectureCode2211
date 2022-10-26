@@ -24,6 +24,29 @@ namespace Day02
                 _grades.Add(rando.NextDouble() * 100);
             }
         }
+
+        /// <summary>
+        /// Loops over the _grades and prints each grade
+        /// </summary>
+        public void PrintGrades()
+        {
+            if (_grades == null) FillGrades();
+
+            for (int i = 0; i < _grades.Count; i++)
+            {
+                double grade = _grades[i];
+                if (grade < 59.5) Console.BackgroundColor = ConsoleColor.Red;
+                else if (grade < 69.5) Console.ForegroundColor = ConsoleColor.DarkYellow;
+                else if(grade < 79.5) Console.ForegroundColor = ConsoleColor.Yellow;
+                else if (grade < 89.5) Console.ForegroundColor = ConsoleColor.Blue;
+                else Console.ForegroundColor = ConsoleColor.Green;
+
+                // ,7 - right-aligns in 7 spaces
+                // :N2 - number with 2 decimal places
+                Console.WriteLine($"{_grades[i],7:N2}");
+                Console.ResetColor();
+            }
+        }
     }
 }
 
