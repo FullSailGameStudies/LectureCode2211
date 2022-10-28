@@ -99,9 +99,10 @@ namespace Day03
         }
         static void PrintMenu(Dictionary<string,float> menu)
         {
+            Console.WriteLine("----------Florida Man's Eatery-----------");
             foreach (var item in menu)
             {
-                Console.WriteLine($"{item.Value} {item.Key}");
+                Console.WriteLine($"{item.Value,8:C2} {item.Key}");
             }
         }
     }
