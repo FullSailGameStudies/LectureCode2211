@@ -9,6 +9,7 @@ namespace Day03
         static void Main(string[] args)
         {
             Menu();
+            Console.ReadKey();
             Course pg2 = new Course() { Name = "PG2 - 2211" };
 
             while (true)
@@ -93,6 +94,15 @@ namespace Day03
             menu["waffles"] = 7.99F;
             menu["shrimp and grits"] = 10.99F;
             menu["shrimp and grits"] = 12.99F;//overwrite. no exception.
+
+            PrintMenu(menu);
+        }
+        static void PrintMenu(Dictionary<string,float> menu)
+        {
+            foreach (var item in menu)
+            {
+                Console.WriteLine($"{item.Value} {item.Key}");
+            }
         }
     }
 }

@@ -14,6 +14,12 @@ namespace Day03
 
         public void FillGrades()
         {
+            List<string> students = new List<string>()
+            {
+                "Anthony", "Julio", "Jeffrey", "ID", "Jonah", "Jake", "Jesus", "Sam",
+                "Albert", "Hanna", "Connor", "Aidan", "Carter", "Alexis", "Kemarly",
+                "Joaquin", "Enrique"
+            };
             Random rando = new Random();
             _grades = new Dictionary<string, double>();
             _grades.Add("Steev", rando.NextDouble() * 100);
@@ -22,6 +28,10 @@ namespace Day03
             _grades.Add("dylan", rando.NextDouble() * 100);
             _grades.Add("Frankie", rando.NextDouble() * 100);
             _grades.Add("Japhet", rando.NextDouble() * 100);
+            foreach (var student in students)
+            {
+                _grades[student] = rando.NextDouble() * 100;
+            }
         }
     }
 }
