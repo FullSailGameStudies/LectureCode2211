@@ -8,6 +8,7 @@ namespace Day03
     {
         static void Main(string[] args)
         {
+            Menu();
             Course pg2 = new Course() { Name = "PG2 - 2211" };
 
             while (true)
@@ -61,6 +62,36 @@ namespace Day03
                 else
                     break;
             }
+        }
+
+        private static void Menu()
+        {
+            //3 ways to get data into the dictionary
+            Dictionary<string, float> menu = new Dictionary<string, float>()
+            {
+                //key,value
+                {"French toast", 11.99F },
+                {"Stuffed French toast", 13.99F }
+            };
+
+            //Add method
+            menu.Add("omelette", 6.99F);
+
+            try
+            {
+                menu.Add("omelette", 6.99F);//cause an exception
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ERROR!!!");
+            }
+
+            menu.Add("pancakes", 8.99F);
+
+            //[ ]
+            menu["waffles"] = 7.99F;
+            menu["shrimp and grits"] = 10.99F;
+            menu["shrimp and grits"] = 12.99F;//overwrite. no exception.
         }
     }
 }
