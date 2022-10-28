@@ -44,6 +44,7 @@ namespace Day03
                             //      print message indicating what happened
                             //          error message if not found
                             //      else call printgrades and print that the student was removed
+                            pg2.DropStudent();
                             break;
                         case 4:
                             //Add a CurveStudent method to the Course class

@@ -35,6 +35,7 @@ namespace Day03
         }
         public void PrintGrades()
         {
+            Console.WriteLine($"---------{Name}----------");
             foreach (var student in _grades)
             {
                 string name = student.Key;
@@ -48,6 +49,26 @@ namespace Day03
                 Console.ResetColor();
                 Console.WriteLine(name);
             }
+        }
+
+        public void DropStudent()
+        {
+            do
+            {
+                PrintGrades();
+                Console.Write("Student to drop? ");
+                string student = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(student)) break;
+
+                bool wasDropped = _grades.Remove(student);
+                if (wasDropped)
+                {
+                    PrintGrades();
+                    Console.WriteLine($"{student} was dropped from {Name}.");
+                }
+                else
+                    Console.WriteLine($"{student} was not in {Name}.");
+            } while (true);
         }
     }
 }
