@@ -11,6 +11,18 @@ namespace Day03
         private Dictionary<string, double> _grades;
 
         public string Name { get; set; } = String.Empty;
+
+        public void FillGrades()
+        {
+            Random rando = new Random();
+            _grades = new Dictionary<string, double>();
+            _grades.Add("Steev", rando.NextDouble() * 100);
+            _grades.Add("Anita", rando.NextDouble() * 100);
+            _grades.Add("Cameron", rando.NextDouble() * 100);
+            _grades.Add("dylan", rando.NextDouble() * 100);
+            _grades.Add("Frankie", rando.NextDouble() * 100);
+            _grades.Add("Japhet", rando.NextDouble() * 100);
+        }
     }
 }
 

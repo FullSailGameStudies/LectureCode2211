@@ -26,6 +26,7 @@ namespace Day03
                             //  initialize the dictionary
                             //  add students and grades
                             //call FillGrades here 
+                            pg2.FillGrades();
                             break;
                         case 2:
                             //Add a method PrintGrades to the Course class
