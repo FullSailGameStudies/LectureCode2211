@@ -35,6 +35,7 @@ namespace Day03
         }
         public void PrintGrades()
         {
+            if (_grades == null) FillGrades();
             Console.WriteLine($"---------{Name}----------");
             foreach (var student in _grades)
             {
@@ -53,6 +54,7 @@ namespace Day03
 
         public void DropStudent()
         {
+            if (_grades == null) FillGrades();
             do
             {
                 PrintGrades();

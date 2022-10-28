@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace Day03
@@ -106,7 +107,49 @@ namespace Day03
             wasRemoved = menu.Remove("hash browns");
             if(!wasRemoved)
                 Console.WriteLine("Hash browns wasn't on the menu?! Weird.");
+
+            //
+            //lookup
+            string key = "waffles";
+            float price = menu[key];//get the value for the key
+            
+            key = "hash browns";
+            try
+            {
+                price = menu[key];//?? key-not-found exception
+            }
+            catch (Exception )
+            {
+                Console.WriteLine($"{key} is not on the menu.");
+            }
+            FindMenuItem(menu, key);
+            TryFindMenuItem(menu, "waffles");
+
         }
+
+        private static void TryFindMenuItem(Dictionary<string, float> menu, string key)
+        {
+            //TryGetValue(key, out value) - returns true/false
+            if (menu.TryGetValue(key, out float value))
+            {
+                Console.WriteLine($"{key} costs {value:C2}");
+            }
+            else
+                Console.WriteLine($"{key} is not on the menu");
+        }
+
+        private static void FindMenuItem(Dictionary<string, float> menu, string key)
+        {
+            //ContainsKey(key) - returns true/false
+            if (menu.ContainsKey(key))
+            {
+                float price = menu[key];
+                Console.WriteLine($"{key} costs {price:C2}");
+            }
+            else
+                Console.WriteLine($"{key} is not on the menu");
+        }
+
         static void PrintMenu(Dictionary<string,float> menu)
         {
             Console.WriteLine("----------Florida Man's Eatery-----------");
