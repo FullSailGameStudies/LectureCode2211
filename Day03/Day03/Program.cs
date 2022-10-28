@@ -98,6 +98,13 @@ namespace Day03
             menu["shrimp and grits"] = 12.99F;//overwrite. no exception.
 
             PrintMenu(menu);
+            string item = "shrimp and grits";
+            bool wasRemoved = menu.Remove(item);
+            if(wasRemoved)
+                Console.WriteLine("Of course, no one likes shrimp and grits!");
+            wasRemoved = menu.Remove("hash browns");
+            if(!wasRemoved)
+                Console.WriteLine("Hash browns wasn't on the menu?! Weird.");
         }
         static void PrintMenu(Dictionary<string,float> menu)
         {
