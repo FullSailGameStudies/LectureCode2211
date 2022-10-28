@@ -33,6 +33,22 @@ namespace Day03
                 _grades[student] = rando.NextDouble() * 100;
             }
         }
+        public void PrintGrades()
+        {
+            foreach (var student in _grades)
+            {
+                string name = student.Key;
+                double grade = student.Value;
+                Console.ForegroundColor = (grade < 59.5) ? ConsoleColor.Red :
+                                          (grade < 69.5) ? ConsoleColor.DarkYellow :
+                                          (grade < 79.5) ? ConsoleColor.Yellow :
+                                          (grade < 89.5) ? ConsoleColor.Blue :
+                                          ConsoleColor.Green;
+                Console.Write($"{grade,7:N2} ");
+                Console.ResetColor();
+                Console.WriteLine(name);
+            }
+        }
     }
 }
 
