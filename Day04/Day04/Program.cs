@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace Day04
@@ -8,6 +9,8 @@ namespace Day04
     {
         static void Main(string[] args)
         {
+            FileIO();
+
             Course pg2 = new Course() { Name = "PG2 - 2211" };
 
             string[] menu = new string[]
@@ -72,6 +75,16 @@ namespace Day04
                 else
                     break;
                 Console.ReadKey();
+            }
+        }
+
+        private static void FileIO()
+        {
+            string filePath = @"C:\temp\2211\supers.csv";
+            //1. Open the file
+            using (StreamWriter sw = new StreamWriter(filePath))//IDisposable
+            {
+                //
             }
         }
     }
