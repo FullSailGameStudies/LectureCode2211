@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http.Headers;
+using System.Threading;
 
 namespace Day04
 {
@@ -21,6 +22,10 @@ namespace Day04
     {
         static void Main(string[] args)
         {
+            Console.ReadKey();
+            Loopit(0);
+            Console.ReadKey();
+
             FileIO();
 
             Course pg2 = new Course() { Name = "PG2 - 2211" };
@@ -69,6 +74,7 @@ namespace Day04
                             //  clear the _grades dictionary
                             //  deserialize the json file to the dictionary
                             //call DeserializeGrades here 
+                            pg2.DeserializeGrades();
                             break;
                         case 5:
                             //Add a static Bats method to this file
@@ -91,6 +97,26 @@ namespace Day04
                     break;
                 Console.ReadKey();
             }
+        }
+
+        static Random randy = new Random();
+        private static void Loopit(int i)
+        {
+            //exit condition
+            if (i < Console.WindowWidth)
+            {
+                Console.BackgroundColor = (ConsoleColor)randy.Next(16);
+                Console.Write(' ');
+                Thread.Sleep(25);
+                Loopit(i + 1);
+            }
+            if (Console.CursorLeft > 0)
+                Console.CursorLeft--;
+            Console.BackgroundColor = ConsoleColor.DarkCyan;
+            Console.Write(' ');
+            if(Console.CursorLeft > 0)
+                Console.CursorLeft--;
+            Thread.Sleep(25);
         }
 
         private static void FileIO()

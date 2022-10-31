@@ -67,6 +67,25 @@ namespace Day04
                 }
             }
         }
+        public void DeserializeGrades()
+        {
+            string filePath = Path.ChangeExtension(_filePath, ".json");
+            if(File.Exists(filePath))
+            {
+                string jsonText = File.ReadAllText(filePath);
+                _grades.Clear();
+                try
+                {
+                    _grades = JsonConvert.DeserializeObject<Dictionary<string, double>>(jsonText);
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Incorrect format.");
+                }
+                PrintGrades();
+            }
+
+        }
 
         #region Day03 Code
         public void FillGrades()
