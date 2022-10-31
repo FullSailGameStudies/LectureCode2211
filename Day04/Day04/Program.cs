@@ -84,6 +84,7 @@ namespace Day04
             string filePath = @"C:\temp\2211\supers.csv";
             char delimiter = '^';
             //1. Open the file
+            #region Writing CSV
             using (StreamWriter sw = new StreamWriter(filePath))//IDisposable
             {
                 //2. Write to the file
@@ -98,7 +99,17 @@ namespace Day04
                 sw.Write(13.7);
                 sw.Write(delimiter);
                 sw.Write(true);
-            }//3. Close the file
+            }//3. Close the file 
+            #endregion
+
+            #region Reading CSV
+            string fileData = File.ReadAllText(filePath); //opens, reads, closes the file
+            string[] data = fileData.Split(delimiter);
+            foreach (var item in data)
+            {
+                Console.WriteLine(item);
+            }
+            #endregion
         }
     }
 }

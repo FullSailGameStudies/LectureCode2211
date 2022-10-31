@@ -21,8 +21,10 @@ namespace Day04
         public void SaveGrades()
         {
             string filePath = @"C:\temp\2211\pg2_2211.csv";
+            //1.Open the file
             using (StreamWriter sw = new StreamWriter(filePath))
             {
+                //2. Write the file
                 bool isFirst = true;
                 foreach (var student in _grades)
                 {
@@ -31,7 +33,7 @@ namespace Day04
                     sw.Write($"{student.Key}:{student.Value}");
                     isFirst = false;
                 }
-            }
+            }//3. Close the file
         }
 
 
