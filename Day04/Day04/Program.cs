@@ -1,10 +1,22 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http.Headers;
 
 namespace Day04
 {
+    enum Superpower
+    {
+        Flight, Strength, LaserEyes, Money, Telepathy, Speed, Invisibility, Fire
+    }
+    class Superhero
+    {
+        public string Name { get; set; }
+        public string Secret { get; set; }
+        public Superpower Power { get; set; } = Superpower.Money;
+    }
     internal class Program
     {
         static void Main(string[] args)
@@ -109,6 +121,27 @@ namespace Day04
             foreach (var item in data)
             {
                 Console.WriteLine(item);
+            }
+            #endregion
+
+            #region Writing JSON
+            List<Superhero> JLA = new();
+            JLA.Add(new Superhero() { Name = "Batman", Secret = "Bruce Wayne", Power = Superpower.Money });
+            JLA.Add(new Superhero() { Name = "Wonder Woman", Secret = "Diana Prince", Power = Superpower.Strength });
+            JLA.Add(new Superhero() { Name = "Superman", Secret = "Clark Kent", Power = Superpower.Flight });
+            JLA.Add(new Superhero() { Name = "Flash", Secret = "Barry Allen", Power = Superpower.Speed });
+            JLA.Add(new Superhero() { Name = "Martian Manhunter", Secret = "John Jones", Power = Superpower.Telepathy });
+
+            //serialize to a file in JSON format
+            filePath = Path.ChangeExtension(filePath, ".json");
+            using (StreamWriter sw = new StreamWriter(filePath))
+            {
+                using (JsonTextWriter jtw = new JsonTextWriter(sw))
+                {
+                    JsonSerializer jsonSerializer = new JsonSerializer();
+                    jsonSerializer.Formatting = Formatting.Indented;
+                    jsonSerializer.Serialize(jtw, JLA);
+                }
             }
             #endregion
         }
