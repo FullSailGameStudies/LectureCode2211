@@ -37,6 +37,7 @@ namespace Day04
                             //Add a method SaveGrades to the Course class
                             //  save the dictionary to a csv file
                             //call SaveGrades here 
+                            pg2.SaveGrades();
                             break;
                         case 2:
                             //Add a method LoadGrades to the Course class

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +18,21 @@ namespace Day04
             FillGrades();
         }
 
+        public void SaveGrades()
+        {
+            string filePath = @"C:\temp\2211\pg2_2211.csv";
+            using (StreamWriter sw = new StreamWriter(filePath))
+            {
+                bool isFirst = true;
+                foreach (var student in _grades)
+                {
+                    if (!isFirst)
+                        sw.Write(';');
+                    sw.Write($"{student.Key}:{student.Value}");
+                    isFirst = false;
+                }
+            }
+        }
 
 
         #region Day03 Code
