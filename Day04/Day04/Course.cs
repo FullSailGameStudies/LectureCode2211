@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -52,6 +53,20 @@ namespace Day04
             PrintGrades();
         }
 
+
+        public void SerializeGrades()
+        {
+            string filePath = Path.ChangeExtension(_filePath, ".json");
+            using (StreamWriter sw = new StreamWriter(filePath))
+            {
+                using (JsonTextWriter jtw = new JsonTextWriter(sw))
+                {
+                    JsonSerializer jsonSerializer = new JsonSerializer();
+                    jsonSerializer.Formatting = Formatting.Indented;
+                    jsonSerializer.Serialize(jtw, _grades);
+                }
+            }
+        }
 
         #region Day03 Code
         public void FillGrades()
@@ -132,7 +147,7 @@ namespace Day04
                 else
                     Console.WriteLine($"{student} was not in {Name}.");
             } while (true);
-        } 
+        }
         #endregion
     }
 }

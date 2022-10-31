@@ -62,6 +62,7 @@ namespace Day04
                             //Add a SerializeGrades method to the Course class
                             //  serialize the dictionary to a json file
                             //call SerializeGrades here 
+                            pg2.SerializeGrades();
                             break;
                         case 4:
                             //Add a DeserializeGrades method to the Course class
