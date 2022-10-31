@@ -10,6 +10,7 @@ namespace Day04
     public class Course
     {
         private Dictionary<string, double> _grades;
+        private string _filePath = @"C:\temp\2211\pg2_2211.csv";
 
         public string Name { get; set; } = String.Empty;
 
@@ -20,9 +21,8 @@ namespace Day04
 
         public void SaveGrades()
         {
-            string filePath = @"C:\temp\2211\pg2_2211.csv";
             //1.Open the file
-            using (StreamWriter sw = new StreamWriter(filePath))
+            using (StreamWriter sw = new StreamWriter(_filePath))
             {
                 //2. Write the file
                 bool isFirst = true;
@@ -34,6 +34,22 @@ namespace Day04
                     isFirst = false;
                 }
             }//3. Close the file
+        }
+
+        public void LoadGrades()
+        {
+            _grades.Clear();
+            string fileData = File.ReadAllText(_filePath);
+            string[] kvps = fileData.Split(';');
+            foreach (var kvp in kvps)
+            {
+                string[] kvpData = kvp.Split(':');
+                if (double.TryParse(kvpData[1], out double grade))
+                {
+                    _grades.Add(kvpData[0], grade);
+                }
+            }
+            PrintGrades();
         }
 
 

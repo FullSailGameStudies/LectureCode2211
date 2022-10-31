@@ -44,6 +44,7 @@ namespace Day04
                             //  clear the _grades dictionary
                             //  load the dictionary data from the csv file
                             //call LoadGrades here
+                            pg2.LoadGrades();
                             break;
                         case 3:
                             //Add a SerializeGrades method to the Course class
