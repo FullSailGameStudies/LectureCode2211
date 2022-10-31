@@ -81,11 +81,23 @@ namespace Day04
         private static void FileIO()
         {
             string filePath = @"C:\temp\2211\supers.csv";
+            char delimiter = '^';
             //1. Open the file
             using (StreamWriter sw = new StreamWriter(filePath))//IDisposable
             {
-                //
-            }
+                //2. Write to the file
+                sw.Write("Batman");
+                sw.Write(delimiter);
+                sw.Write("Aquaman");
+                sw.Write(delimiter);
+                sw.Write("Flyboy(Superman)");
+                sw.Write(delimiter);
+                sw.Write(5);
+                sw.Write(delimiter);
+                sw.Write(13.7);
+                sw.Write(delimiter);
+                sw.Write(true);
+            }//3. Close the file
         }
     }
 }
