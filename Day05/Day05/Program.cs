@@ -92,6 +92,11 @@ namespace Day04
                             break;
                         case 3:
                             Console.WriteLine("Part 3 - Swap");
+                            List<int> nums = new() { 5, 13, 7, 3, 420 };
+                            int index1 = 1, index2 = 2;
+                            PrintList(nums);
+                            Swap(nums, index1, index2);
+                            PrintList(nums);
                             //Add a static Swap method to this file
                             //  Parameters: a list of ints and 2 ints for the indexes to swap
                             //  The method should swap the items at the 2 indexes
@@ -127,6 +132,23 @@ namespace Day04
                 Console.ReadKey();
             }
         }
+
+        private static void Swap(List<int> nums, int index1, int index2)
+        {
+            //int temp = nums[index1];
+            //nums[index1] = nums[index2];//overwrite index1
+            //nums[index2] = temp;
+            (nums[index2], nums[index1]) = (nums[index1], nums[index2]);
+        }
+
+        private static void PrintList(List<int> nums)
+        {
+            Console.Write("Nums: ");
+            foreach (var item in nums)
+                Console.Write($"{item} ");
+            Console.WriteLine();
+        }
+
         static Dictionary<uint, ulong> _fibs = new Dictionary<uint, ulong>();
         private static ulong Fibonacci2(uint i)
         {
