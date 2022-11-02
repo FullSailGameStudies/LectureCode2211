@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Threading;
 
@@ -27,6 +28,8 @@ namespace Day04
             {"0. Exit", "1. Part 1 - Bats", "2. Part 2 - Fibonacci", "3. Part 3 - Swap", "4. Part 4 - Split"};
 
             int part = 1;
+            _fibs.Add(0, 0);
+            _fibs[1] = 1;
             while (true)
             {
                 Console.Clear();
@@ -75,6 +78,17 @@ namespace Day04
 
                             //loop 45 times here and call Fibonacci on the for loop variable
                             //  print the result for each call to Fibonacci
+                            Stopwatch stopper = new Stopwatch();
+                            for (uint i = 0; i < 145; i++)
+                            {
+                                stopper.Restart();
+                                result = Fibonacci2(i);
+                                stopper.Stop();
+                                long ms = stopper.ElapsedMilliseconds;
+                                Console.Write($"Fibonacci2({i}) = {result}");
+                                Console.CursorLeft = 40;
+                                Console.WriteLine($"{ms} ms");
+                            }
                             break;
                         case 3:
                             Console.WriteLine("Part 3 - Swap");
@@ -113,14 +127,33 @@ namespace Day04
                 Console.ReadKey();
             }
         }
-        /*
-        for(int i = 0;i < 100;i++)
+        static Dictionary<uint, ulong> _fibs = new Dictionary<uint, ulong>();
+        private static ulong Fibonacci2(uint i)
         {
-            Console.Write((char)78);
-            Console.Write((char)65);
-            Console.Write(' ');
+            if (_fibs.TryGetValue(i, out ulong result))
+                return result;
+
+            result = Fibonacci2(i - 1) + Fibonacci2(i - 2);
+            _fibs[i] = result;
+            return result;
         }
-        */
+        private static ulong Fibonacci(uint i)
+        {
+            if (i == 0) return 0;
+            if (i == 1) return 1;
+
+            ulong result = Fibonacci(i - 1) + Fibonacci(i - 2);
+            return result;
+        }
+
+        /*
+for(int i = 0;i < 100;i++)
+{
+   Console.Write((char)78);
+   Console.Write((char)65);
+   Console.Write(' ');
+}
+*/
         private static void Bats(int i)
         {
             if (i < 100)//exit condition
