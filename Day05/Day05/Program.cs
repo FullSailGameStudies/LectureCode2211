@@ -1,13 +1,195 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.IO;
+using System.Threading;
 
-namespace Day05
+namespace Day04
 {
     internal class Program
     {
         static void Main(string[] args)
         {
+            //Console.ReadKey();
+            //int size = Math.Min(Console.WindowWidth, Console.WindowHeight)-1;
+            //int x = 0, y = 0;
+            //for (int i = size; i >0; i-=2)
+            //{
+            //    Graphics.DrawBox(x++, y++, i, ConsoleColor.Red);
+            //}
+            Console.ReadKey();
+            //Loopit(0);
+            Console.ResetColor();
+            //Console.ReadKey();
+
+            string[] menu = new string[]
+            {"0. Exit", "1. Part 1 - Bats", "2. Part 2 - Fibonacci", "3. Part 3 - Swap", "4. Part 4 - Split"};
+
+            int part = 1;
+            while (true)
+            {
+                Console.Clear();
+
+                #region Show Menu
+                Console.WriteLine("What part to run?");
+                foreach (var option in menu)
+                    Console.WriteLine(option);
+                Console.Write("Choice? ");
+                string input = Console.ReadLine();
+                #endregion
+
+                if (int.TryParse(input, out part) && part > 0 && part < menu.Length)
+                {
+                    switch (part)
+                    {
+                        case 1:
+                            Console.WriteLine("Part 1 - Bats");
+                            //Add a static Bats method to this file
+                            //  convert this for loop to a recursive loop using the Bats method
+                            /*
+                                for(int i = 0;i < 100;i++)
+                                {
+                                    Console.Write((char)78);
+                                    Console.Write((char)65);
+                                    Console.Write(' ');
+                                }
+                             */
+                            //call Bats here
+                            Bats(0);
+                            Console.ResetColor();
+                            Console.Write((char)66);
+                            Console.Write((char)65);
+                            Console.Write((char)84);
+                            Console.Write((char)77);
+                            Console.Write((char)65);
+                            Console.Write((char)78);
+                            Console.WriteLine("!");
+                            break;
+                        case 2:
+                            Console.WriteLine("Part 2 - Fibonacci");
+                            //Add a static Fibonacci method to this file
+                            //  recursively calculate the Fibonacci of a number. 
+                            //  EX: Fibonnaci(N) = Fibonnaci(N-1) + Fibonanci(N-2)
+                            //      Fibonacci(0) = 0 and Fibonacci(1) = 1
+
+                            //loop 45 times here and call Fibonacci on the for loop variable
+                            //  print the result for each call to Fibonacci
+                            break;
+                        case 3:
+                            Console.WriteLine("Part 3 - Swap");
+                            //Add a static Swap method to this file
+                            //  Parameters: a list of ints and 2 ints for the indexes to swap
+                            //  The method should swap the items at the 2 indexes
+                            //
+                            //Call Swap from main and pass in a list of ints and 2 indexes to swap
+                            //print the list after calling swap to verify that the items were swapped
+                            break;
+                        case 4:
+                            Console.WriteLine("Part 4 - Split");
+                            //Add a static Split method to this file
+                            //  Parameters: a list of ints
+                            //  The method should use the Split portion to create 2 lists from 1 list
+                            //  After splitting the list into 2 lists, print the left list and the right list
+                            //
+                            /*
+                                var left := empty list
+                                var right:= empty list
+                                for i = 0 to length(m) do
+                                        if i < (length of m)/ 2 then
+                                            add m[i] to left
+                                  else
+                                    add m[i] to right
+                            */
+
+                            //Call Split from main with a list of ints
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                else
+                    break;
+                Console.ReadKey();
+            }
+        }
+        /*
+        for(int i = 0;i < 100;i++)
+        {
+            Console.Write((char)78);
+            Console.Write((char)65);
+            Console.Write(' ');
+        }
+        */
+        private static void Bats(int i)
+        {
+            if (i < 100)//exit condition
+            {
+                Console.Write((char)78);
+                Console.Write((char)65);
+                Console.Write(' ');
+                Bats(i + 1);//make a recursive call
+
+                Console.ForegroundColor = (ConsoleColor)randy.Next(16);
+                Console.Write("!");
+            }
+        }
+
+        static ulong Factorial(uint N)
+        {
+            if (N <= 1) return 1;
+
+            ulong result = N * Factorial(N - 1);
+            return result;
+        }
+
+        static Random randy = new Random();
+        private static void Loopit(int i)
+        {
+            //exit condition
+            if (i < Console.WindowWidth)
+            {
+                Console.BackgroundColor = (ConsoleColor)randy.Next(16);
+                Console.Write(' ');
+                Thread.Sleep(5);
+                Loopit(i + 1);
+            }
+            if (Console.CursorLeft > 0)
+                Console.CursorLeft--;
+            Console.BackgroundColor = ConsoleColor.DarkCyan;
+            Console.Write(' ');
+            if (Console.CursorLeft > 0)
+                Console.CursorLeft--;
+            Thread.Sleep(5);
+        }
+    }
+
+    static class Graphics
+    {
+        public static void DrawBox(int x, int y, int size, ConsoleColor color)
+        {
+            Console.BackgroundColor = color;
+            DrawHLine(x, y, size);
+            DrawHLine(x, y + size, size);
+            DrawVLine(x, y, size);
+            DrawVLine(x + size, y, size);
+            Console.ResetColor();
+        }
+
+        private static void DrawVLine(int x, int y, int size)
+        {
+            for(int i=y;i<=y+size;i++)
+            {
+                Console.SetCursorPosition(x, i);
+                Console.Write(' ');
+            }
+        }
+
+        private static void DrawHLine(int x, int y, int size)
+        {
+            Console.SetCursorPosition(x, y);
+            for (int i = x; i <= x + size; i++)
+            {
+                Console.Write(' ');
+            }
         }
     }
 }
