@@ -16,6 +16,8 @@ namespace Day04
             //{
             //    Graphics.DrawBox(x++, y++, i, ConsoleColor.Red);
             //}
+            ulong result = Factorial(5);
+            Console.WriteLine($"5! = {result}");
             Console.ReadKey();
             //Loopit(0);
             Console.ResetColor();
