@@ -19,6 +19,15 @@ namespace Day04
             //}
             ulong result = Factorial(5);
             Console.WriteLine($"5! = {result}");
+            string s1 = "Batman", s2 = "Batmen";
+            int compResult = s1.CompareTo(s2);
+            // -1 : LESS THAN
+            //  0 : EQUAL TO
+            //  1 : GREATER THAN
+            if (compResult == 0) Console.WriteLine($"{s1} EQUALS {s2}");
+            else if(compResult < 0) Console.WriteLine($"{s1} LESS THAN {s2}");
+            else if (compResult > 0) Console.WriteLine($"{s1} GREATER THAN {s2}");
+
             Console.ReadKey();
             //Loopit(0);
             Console.ResetColor();
@@ -120,6 +129,8 @@ namespace Day04
                                   else
                                     add m[i] to right
                             */
+                            List<int> numbers = new() { 5, 13, 3, 42, -1 };
+                            Split(numbers);
 
                             //Call Split from main with a list of ints
                             break;
@@ -133,6 +144,32 @@ namespace Day04
             }
         }
 
+        /*
+            var left := empty list
+            var right:= empty list
+            for i = 0 to length(m) do
+                    if i < (length of m)/ 2 then
+                        add m[i] to left
+              else
+                add m[i] to right
+        */
+        private static void Split(List<int> m)
+        {
+            PrintList(m, "m");
+            var left = new List<int>();
+            var right = new List<int>();
+            int mid = m.Count / 2;
+            for (int i = 0; i < m.Count; i++)
+            {
+                if(i < mid)
+                    left.Add(m[i]);
+                else
+                    right.Add(m[i]);
+            }
+            PrintList(left,  " Left: ");
+            PrintList(right, "Right: ");
+        }
+
         private static void Swap(List<int> nums, int index1, int index2)
         {
             //int temp = nums[index1];
@@ -141,9 +178,9 @@ namespace Day04
             (nums[index2], nums[index1]) = (nums[index1], nums[index2]);
         }
 
-        private static void PrintList(List<int> nums)
+        private static void PrintList(List<int> nums, string name = "Nums")
         {
-            Console.Write("Nums: ");
+            Console.Write($"{name}: ");
             foreach (var item in nums)
                 Console.Write($"{item} ");
             Console.WriteLine();
