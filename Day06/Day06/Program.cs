@@ -79,8 +79,18 @@ namespace Day06
                             Console.ResetColor();
                             break;
                         case 4:
+                            Console.Clear();
                             Console.WriteLine("Part 4 - Draw Random");
                             //call plotLine to draw 1000 random lines in the console
+                            Random rando = new Random();
+                            for (int i = 0; i < 1000; i++)
+                            {
+                                Console.BackgroundColor = (ConsoleColor)rando.Next(16);
+                                int x0 = rando.Next(Console.WindowWidth - 1), x1 = rando.Next(Console.WindowWidth - 1);
+                                int y0 = rando.Next(Console.WindowHeight - 1), y1 = rando.Next(Console.WindowHeight - 1);
+                                Graphics.PlotLine(x0, y0, x1, y1);
+                            }
+                            Console.ResetColor();
                             break;
                         default:
                             break;
