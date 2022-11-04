@@ -105,6 +105,34 @@ namespace Day06
 
     static class Graphics
     {
+        private static void PlotLineLow(int x0, int y0, int x1, int y1)
+        {
+            int dx = x1 - x0;
+            int dy = y1 - y0;
+            int yi = 1;
+
+            if(dy < 0)
+            {
+                yi = -1;
+                dy = -dy;
+            }
+
+            int D = 2 * dy - dx;
+            int y = y0;
+
+            for (int x = x0; x <= x1; x++)
+            {
+                Console.SetCursorPosition(x, y);
+                Console.Write(' ');
+
+                if(D > 0)
+                {
+                    y += yi;
+                    D -= 2 * dx;
+                }
+                D += 2 * dy;
+            }
+        }
         /*
          plotLineLow(x0,y0, x1,y1) 
              dx = x1 - x0 
@@ -130,6 +158,34 @@ namespace Day06
                 D = D + 2*dy 
          */
 
+        private static void PlotLineHigh(int x0, int y0, int x1, int y1)
+        {
+            int dx = x1 - x0;
+            int dy = y1 - y0;
+            int xi = 1;
+
+            if (dx < 0)
+            {
+                xi = -1;
+                dx = -dx;
+            }
+
+            int D = 2 * dx - dy;
+            int x = x0;
+
+            for (int y = y0; y <= y1; y++)
+            {
+                Console.SetCursorPosition(x, y);
+                Console.Write(' ');
+
+                if (D > 0)
+                {
+                    x += xi;
+                    D -= 2 * dy;
+                }
+                D += 2 * dx;
+            }
+        }
         /*
          plotLineHigh(x0,y0, x1,y1) 
             dx = x1 - x0 
@@ -156,6 +212,19 @@ namespace Day06
 
          */
 
+        public static void PlotLine(int x0, int y0, int x1, int y1)
+        {
+            if(Math.Abs(y1-y0) < Math.Abs(x1 - x0))
+            {
+                if (x0 > x1) PlotLineLow(x1, y1, x0, y0);
+                else PlotLineLow(x0, y0, x1, y1);
+            }
+            else
+            {
+                if (y0 > y1) PlotLineHigh(x1, y1, x0, y0);
+                else PlotLineHigh(x0, y0, x1, y1);
+            }
+        }
         /*
          plotLine(x0,y0, x1,y1) 
             if abs(y1 - y0) < abs(x1 - x0) 
