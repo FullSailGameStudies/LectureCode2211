@@ -70,8 +70,13 @@ namespace Day06
                             Console.ResetColor();
                             break;
                         case 3:
+                            Console.Clear();
                             Console.WriteLine("Part 3 - Draw Diagonals");
                             //call plotLine to draw diagonal lines in the console from corners to corners (top,left to bottom,right and bottom,left to top,right)
+                            Console.BackgroundColor = ConsoleColor.DarkRed;
+                            Graphics.PlotLine(0, 0, Console.WindowWidth - 1, Console.WindowHeight - 1);
+                            Graphics.PlotLine(0, Console.WindowHeight - 1, Console.WindowWidth - 1, 0);
+                            Console.ResetColor();
                             break;
                         case 4:
                             Console.WriteLine("Part 4 - Draw Random");
