@@ -55,12 +55,19 @@ namespace Day06
                             //print the results
                             break;
                         case 2:
+                            Console.Clear();
                             Console.WriteLine("Part 2 - Draw Crosshairs");
                             //
                             //Convert the pseudo-code in the Graphics class to 3 static methods: plotLineLow, plotLineHigh, plotLine
                             //
 
                             //call plotLine to draw crosshairs in the console
+                            Console.BackgroundColor = ConsoleColor.DarkCyan;
+                            int midx = Console.WindowWidth / 2;
+                            int midy = Console.WindowHeight / 2;
+                            Graphics.PlotLine(midx, 0, midx, Console.WindowHeight - 1);
+                            Graphics.PlotLine(0, midy, Console.WindowWidth-1, midy);
+                            Console.ResetColor();
                             break;
                         case 3:
                             Console.WriteLine("Part 3 - Draw Diagonals");
