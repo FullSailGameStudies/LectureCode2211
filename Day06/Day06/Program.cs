@@ -94,25 +94,12 @@ namespace Day06
                         case 5:
                             Console.Clear();
                             Console.WriteLine("Part 5 - Draw Pyramid");
-                            Console.BackgroundColor = ConsoleColor.Gray;
-                            Console.Clear();
-                            midx = Console.WindowWidth / 2;
-                            midy = Console.WindowHeight / 2;
-                            Console.BackgroundColor = ConsoleColor.Blue;
-                            for (int y = 0; y < Console.WindowHeight; y++)
+                            Console.CursorVisible = false;
+                            while (true)
                             {
-                                Graphics.PlotLine(midx,midy, Console.WindowWidth-1, y);
+                                DrawPyramid();
                             }
-                            Console.BackgroundColor = ConsoleColor.Red;
-                            for (int y = 0; y < Console.WindowHeight; y++)
-                            {
-                                Graphics.PlotLine(midx, midy, 0, y);
-                            }
-                            Console.BackgroundColor = ConsoleColor.Green;
-                            for (int x = 0; x < Console.WindowWidth; x++)
-                            {
-                                Graphics.PlotLine(midx, midy, x, Console.WindowHeight-1);
-                            }
+                            Console.CursorVisible = true;
                             Console.ResetColor();
                             break;
                         default:
@@ -122,6 +109,29 @@ namespace Day06
                 else
                     break;
                 Console.ReadKey();
+            }
+        }
+
+        private static void DrawPyramid()
+        {
+            Console.BackgroundColor = Ext.RandoColor();// ConsoleColor.Gray;
+            Console.Clear();
+            int midx = Console.WindowWidth / 2;
+            int midy = Console.WindowHeight / 2;
+            Console.BackgroundColor = Ext.RandoColor();//ConsoleColor.Blue;
+            for (int y = 0; y < Console.WindowHeight; y++)
+            {
+                Graphics.PlotLine(midx, midy, Console.WindowWidth - 1, y);
+            }
+            Console.BackgroundColor = Ext.RandoColor();//ConsoleColor.Red;
+            for (int y = 0; y < Console.WindowHeight; y++)
+            {
+                Graphics.PlotLine(midx, midy, 0, y);
+            }
+            Console.BackgroundColor = Ext.RandoColor();//ConsoleColor.Green;
+            for (int x = 0; x < Console.WindowWidth; x++)
+            {
+                Graphics.PlotLine(midx, midy, x, Console.WindowHeight - 1);
             }
         }
 
