@@ -9,7 +9,7 @@ namespace Day06
         static void Main(string[] args)
         {
             string[] menu = new string[]
-            {"0. Exit", "1. Part 1 - Linear", "2. Part 2 - Draw Crosshairs", "3. Part 3 - Draw Diagonals", "4. Part 4 - Draw Random"};
+            {"0. Exit", "1. Part 1 - Linear", "2. Part 2 - Draw Crosshairs", "3. Part 3 - Draw Diagonals", "4. Part 4 - Draw Random", "5. Part 5 - Draw Pyramid"};
 
             int part = 1;
             while (true)
@@ -82,13 +82,36 @@ namespace Day06
                             Console.Clear();
                             Console.WriteLine("Part 4 - Draw Random");
                             //call plotLine to draw 1000 random lines in the console
-                            Random rando = new Random();
                             for (int i = 0; i < 1000; i++)
                             {
-                                Console.BackgroundColor = (ConsoleColor)rando.Next(16);
-                                int x0 = rando.Next(Console.WindowWidth - 1), x1 = rando.Next(Console.WindowWidth - 1);
-                                int y0 = rando.Next(Console.WindowHeight - 1), y1 = rando.Next(Console.WindowHeight - 1);
+                                Console.BackgroundColor = Ext.RandoColor();// (ConsoleColor)rando.Next(16);
+                                int x0 = Ext.RandoX(), x1 = Ext.RandoX();
+                                int y0 = Ext.RandoY(), y1 = Ext.RandoY();
                                 Graphics.PlotLine(x0, y0, x1, y1);
+                            }
+                            Console.ResetColor();
+                            break;
+                        case 5:
+                            Console.Clear();
+                            Console.WriteLine("Part 5 - Draw Pyramid");
+                            Console.BackgroundColor = ConsoleColor.Gray;
+                            Console.Clear();
+                            midx = Console.WindowWidth / 2;
+                            midy = Console.WindowHeight / 2;
+                            Console.BackgroundColor = ConsoleColor.Blue;
+                            for (int y = 0; y < Console.WindowHeight; y++)
+                            {
+                                Graphics.PlotLine(midx,midy, Console.WindowWidth-1, y);
+                            }
+                            Console.BackgroundColor = ConsoleColor.Red;
+                            for (int y = 0; y < Console.WindowHeight; y++)
+                            {
+                                Graphics.PlotLine(midx, midy, 0, y);
+                            }
+                            Console.BackgroundColor = ConsoleColor.Green;
+                            for (int x = 0; x < Console.WindowWidth; x++)
+                            {
+                                Graphics.PlotLine(midx, midy, x, Console.WindowHeight-1);
                             }
                             Console.ResetColor();
                             break;
