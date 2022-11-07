@@ -36,5 +36,13 @@ namespace Day07CL
             Capacity = capacity;
             Items = items.ToList();//clone it
         }
+
+        public void AddItem(string itemToAdd)
+        {
+            if (Count == Capacity)
+                throw new Exception("The backpack is full, FOOL!");
+
+            _items.Add(itemToAdd);
+        }
     }
 }

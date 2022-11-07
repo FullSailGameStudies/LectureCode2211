@@ -20,6 +20,23 @@ namespace Day07
 
             gObject.X = 10;//calls the set
             int xPosition = gObject.X;//calls the get
+
+            Inventory backpack = new Inventory(3, new List<string>() );
+            backpack.AddItem("sword");
+            backpack.AddItem("map");
+            backpack.AddItem("pipe bomb");
+            try
+            {
+                backpack.AddItem("Boots");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            FantasyWeapon sting = new FantasyWeapon(WeaponRarity.Legendary, 100, 1000, 1000000);
+            int damage = sting.DoDamage();
+            Console.WriteLine($"I swing sting and do {damage} damage to the rat.");
         }
     }
 }
