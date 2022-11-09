@@ -10,7 +10,7 @@ namespace Day07CL
     public class Inventory
     {
         private int _capacity = 0;
-        private List<string> _items = new List<string>();
+        private List<FantasyWeapon> _weapons = new List<FantasyWeapon>();
 
         public int Capacity
         {
@@ -23,26 +23,26 @@ namespace Day07CL
         }
         public int Count
         {
-            get { return _items.Count; }
+            get { return _weapons.Count; }
         }
-        public List<string> Items
+        public List<FantasyWeapon> Items
         {
-            get { return _items; }
-            private set { _items = value; }
+            get { return _weapons; }
+            private set { _weapons = value; }
         }
 
-        public Inventory(int capacity, List<string> items)
+        public Inventory(int capacity, List<FantasyWeapon> items)
         {
             Capacity = capacity;
             Items = items.ToList();//clone it
         }
 
-        public void AddItem(string itemToAdd)
+        public void AddItem(FantasyWeapon itemToAdd)
         {
             if (Count == Capacity)
                 throw new Exception("The backpack is full, FOOL!");
 
-            _items.Add(itemToAdd);
+            _weapons.Add(itemToAdd);
         }
     }
 }
