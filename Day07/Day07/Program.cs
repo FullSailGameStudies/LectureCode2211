@@ -53,6 +53,35 @@ namespace Day07
             //      casting from a Derived type variable to a base type variable
             //player variable is a Player object. Player is-a GameObject
             GameObject gameObject = player;
+            gameObject = new GameObject(0, 0, ConsoleColor.Black);
+
+            //
+            // Downcasting
+            //      cast from a BASE type variable to a DERIVED type variable
+            //NOT SAFE!!!!
+            //ways to downcast...
+            //1) explicit cast. MUST USE a try-catch. NOT the best way to downcast
+            try
+            {
+                Player p1 = (Player)gameObject;//gets rid of the build error. will cause an exception
+            }
+            catch (Exception)
+            {
+            }
+            //2) use the 'as' keyword
+            //   will NOT throw an exception.
+            //   if gameObject is NOT a player, it will assign NULL to p2
+            //   
+            Player p2 = gameObject as Player;
+            if (p2 != null)
+            {
+                int x = p2.X; //this could throw a null reference exception
+            }
+            //3) use pattern matching with the 'is' keyword
+            if (gameObject is Player p3)
+            {
+                int x = p3.X; //this could throw a null reference exception
+            }
         }
     }
 }
