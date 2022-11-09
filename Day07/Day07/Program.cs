@@ -10,10 +10,10 @@ namespace Day07
         static void Main(string[] args)
         {
             GameObject gObject;//null
-            gObject = new GameObject(5, 10, ConsoleColor.DarkCyan);
+            gObject = Factory.BuildGameObject(5, 10, ConsoleColor.DarkCyan);
             gObject.Draw();
 
-            GameObject player = new GameObject(15, 15, ConsoleColor.Red);
+            GameObject player = Factory.BuildGameObject(15, 15, ConsoleColor.Red);
             player.Draw();
 
             GameObject.DebugIt();
