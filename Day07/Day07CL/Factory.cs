@@ -15,5 +15,10 @@ namespace Day07CL
             GameObject gameObject = new GameObject(x,y,color);
             return gameObject;
         }
+
+        public static FantasyWeapon CreateWeapon(WeaponRarity rarity, int level, int maxDamage, int costs)
+        {
+            return new FantasyWeapon(rarity, level, maxDamage, costs);
+        }
     }
 }
