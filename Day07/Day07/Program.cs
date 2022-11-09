@@ -37,6 +37,8 @@ namespace Day07
             FantasyWeapon sting = Factory.CreateWeapon(WeaponRarity.Legendary, 100, 1000, 1000000);
             int damage = sting.DoDamage();
             Console.WriteLine($"I swing sting and do {damage} damage to the rat.");
+
+            BowWeapon bow = new BowWeapon(10, 5, WeaponRarity.Common, 5, 50, 20);
         }
     }
 }
