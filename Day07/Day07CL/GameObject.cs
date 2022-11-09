@@ -66,6 +66,7 @@ namespace Day07CL
         //}
         public GameObject(int x, int y, ConsoleColor color)
         {
+            Console.WriteLine("GameObject ctor");
             //x = X;//WRONG! backwards!!
             X = x;
             Y = y;

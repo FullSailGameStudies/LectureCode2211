@@ -13,7 +13,7 @@ namespace Day07
             gObject = Factory.BuildGameObject(5, 10, ConsoleColor.DarkCyan);
             gObject.Draw();
 
-            GameObject player = Factory.BuildGameObject(15, 15, ConsoleColor.Red);
+            GameObject player = new Player(1, 100, 15, 15, ConsoleColor.Red);
             player.Draw();
 
             GameObject.DebugIt();
