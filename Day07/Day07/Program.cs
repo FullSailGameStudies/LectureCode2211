@@ -1,6 +1,8 @@
-﻿using Day07CL;
+﻿using Day06;
+using Day07CL;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 
 namespace Day07
@@ -82,6 +84,34 @@ namespace Day07
             if (gameObject is Player p3)
             {
                 int x = p3.X; //this could throw a null reference exception
+            }
+
+            Console.WriteLine("Press any key to play...");
+            Console.ReadKey();
+            Console.Clear();
+
+            List<GameObject> gameObjects = new List<GameObject>();
+            gameObjects.Add(player);
+            for (int i = 0; i < 20; i++)
+            {
+                gameObjects.Add(Factory.BuildGameObject(
+                    Ext.RandoX(Console.WindowWidth),
+                    Ext.RandoY(Console.WindowHeight),
+                    Ext.RandoColor()));
+            }
+            //start the game loop
+            while (true)
+            {
+                Update(gameObjects);
+                Render(gameObjects);
+            }
+        }
+
+        private static void Update(List<GameObject> gameObjects)
+        {
+            foreach (var gameObject in gameObjects)
+            {
+                gameObject.Update();
             }
         }
     }

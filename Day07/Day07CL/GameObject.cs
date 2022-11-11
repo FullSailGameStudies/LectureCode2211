@@ -90,5 +90,10 @@ namespace Day07CL
             Console.Write(' ');
             Console.ResetColor();
         }
+
+        public virtual void Update()
+        {
+            //do nothing. base game objects don't move
+        }
     }
 }
