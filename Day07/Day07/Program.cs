@@ -11,6 +11,12 @@ namespace Day07
     {
         static void Main(string[] args)
         {
+            foreach (WeaponRarity rarity in Enum.GetValues<WeaponRarity>())
+            {
+                Console.WriteLine(rarity);
+            }
+            Console.ReadKey();
+
             GameObject gObject;//null
             gObject = Factory.BuildGameObject(5, 10, ConsoleColor.DarkCyan);
             gObject.Draw();
