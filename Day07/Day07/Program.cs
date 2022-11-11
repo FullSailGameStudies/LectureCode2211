@@ -45,6 +45,7 @@ namespace Day07
             backpack.AddItem(bow);//upcasts bow to a FantasyWeapon
             //when we upcasted it, did we lose arrowcount/capacity?
             backpack.PrintInventory();
+            backpack.PrintList();
 
 
             int num = 5;
