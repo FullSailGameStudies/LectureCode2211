@@ -15,7 +15,7 @@ namespace Day07
             gObject = Factory.BuildGameObject(5, 10, ConsoleColor.DarkCyan);
             gObject.Draw();
 
-            Player player = new Player(1, 100, 15, 15, ConsoleColor.Red);
+            Player player = new Player('$',1, 100, 15, 15, ConsoleColor.Red);
             player.Draw();
 
             GameObject.DebugIt();
@@ -99,11 +99,22 @@ namespace Day07
                     Ext.RandoY(Console.WindowHeight),
                     Ext.RandoColor()));
             }
+            Console.CursorVisible = false;
+            Render(gameObjects);
             //start the game loop
             while (true)
             {
                 Update(gameObjects);
                 Render(gameObjects);
+            }
+            Console.CursorVisible = true;
+        }
+
+        private static void Render(List<GameObject> gameObjects)
+        {
+            foreach (GameObject gObject in gameObjects)
+            {
+                gObject.Draw();
             }
         }
 

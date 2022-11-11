@@ -66,7 +66,7 @@ namespace Day07CL
         //}
         public GameObject(int x, int y, ConsoleColor color)
         {
-            Console.WriteLine("GameObject ctor");
+            //Console.WriteLine("GameObject ctor");
             //x = X;//WRONG! backwards!!
             X = x;
             Y = y;
@@ -83,7 +83,7 @@ namespace Day07CL
 
         //instance methods have a hidden parameter called 'this'
         //'this' is the object the method was called on
-        public void Draw()
+        public virtual void Draw()
         {
             Console.SetCursorPosition(X, Y);
             Console.BackgroundColor = Color;

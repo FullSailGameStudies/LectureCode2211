@@ -10,14 +10,24 @@ namespace Day07CL
     {
         public int Level { get; set; }
         public int Health { get; set; }
+        public char Symbol { get; set; }
 
         //we need a constructor that will CALL the base constructor
-        public Player(int level, int health, int x, int y, ConsoleColor color) : base(x,y,color)
+        public Player(char symbol, int level, int health, int x, int y, ConsoleColor color) : base(x,y,color)
         {
-            Console.WriteLine("\tPlayer ctor");
+            Symbol = symbol;
+            //Console.WriteLine("\tPlayer ctor");
             Level = level;
             Health = health;
             //_x = 0;//why is this a problem?
+        }
+
+        public override void Draw()
+        {
+            Console.SetCursorPosition(X, Y);
+            Console.ForegroundColor  = Color;
+            Console.Write(Symbol);
+            Console.ResetColor();
         }
 
         public override void Update()
