@@ -100,6 +100,12 @@ namespace Day07
                     Ext.RandoY(Console.WindowHeight),
                     Ext.RandoColor()));
             }
+            for (int i = 0; i < 5; i++)
+            {
+                gameObjects.Add(new NPC(player, Ext.RandoX(Console.WindowWidth),
+                    Ext.RandoY(Console.WindowHeight),
+                    Ext.RandoColor()));
+            }
             Console.CursorVisible = false;
             Render(gameObjects);
             //start the game loop
