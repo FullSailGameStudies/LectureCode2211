@@ -8,6 +8,7 @@ namespace Day07CL
 {
     public class Player : GameObject
     {
+        private int _oldX, _oldY;
         public int Level { get; set; }
         public int Health { get; set; }
         public char Symbol { get; set; }
@@ -22,10 +23,22 @@ namespace Day07CL
             //_x = 0;//why is this a problem?
         }
 
+        private void SavePosition()
+        {
+            _oldX = X;
+            _oldY = Y;
+        }
+
         public override void Draw()
         {
-            Console.SetCursorPosition(X, Y);
-            Console.ForegroundColor  = Color;
+            Draw(_oldX, _oldY, ConsoleColor.Black);//erase
+            Draw(X, Y, Color);
+        }
+
+        private void Draw(int x, int y, ConsoleColor color)
+        {
+            Console.SetCursorPosition(x,y);
+            Console.ForegroundColor = color;
             Console.Write(Symbol);
             Console.ResetColor();
         }
@@ -62,6 +75,7 @@ namespace Day07CL
 
         private void MoveRight()
         {
+            SavePosition();
             if (X < Console.WindowWidth-1)
                 X++;
             else
@@ -70,6 +84,7 @@ namespace Day07CL
 
         private void MoveLeft()
         {
+            SavePosition();
             if (X > 0)
                 X--;
             else
@@ -79,6 +94,7 @@ namespace Day07CL
 
         private void MoveDown()
         {
+            SavePosition();
             if (Y < Console.WindowHeight - 1)
                 Y++;
             else
@@ -87,6 +103,7 @@ namespace Day07CL
 
         private void MoveUp()
         {
+            SavePosition();
             if (Y > 0)
                 Y--;
             else
