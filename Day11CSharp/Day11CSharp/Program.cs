@@ -1,4 +1,4 @@
-﻿using System;
+﻿//using System;
 
 namespace Day11CSharp
 {
@@ -6,7 +6,8 @@ namespace Day11CSharp
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            //System -- namespace
+            System.Console.WriteLine("Hello World!");
         }
     }
 }
